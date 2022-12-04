@@ -15,7 +15,12 @@ export class HomePage extends Component {
         return `
         <main>
             <h2>Pokemon List</h2>
+            <h3>Vistos 20/10000</h3>
             <slot name="home"></slot>
+            <div>
+            <button id="previuos" ><</button>
+            <button id="next">></button>
+        </div>
         </main>
         `;
     }

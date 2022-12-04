@@ -15,7 +15,15 @@ export class Favorites extends Component {
         return `
         <main>
             <h2>Pokemon Favoritos</h2>
+            <h3>Vistos 20/10000</h3>
+            <slot name="favorites"></slot>
+            
         </main>
+
+        <div>
+            <button id="previuos" ><</button>
+            <button id="next">></button>
+        </div>
         `;
     }
 }
