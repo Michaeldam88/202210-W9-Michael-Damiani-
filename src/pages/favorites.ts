@@ -14,16 +14,18 @@ export class Favorites extends Component {
     private createTemplate() {
         return `
         <main>
+            <div class="home-header">
             <h2>Pokemon Favoritos</h2>
             <h3>Vistos 20/10000</h3>
-            <slot name="favorites"></slot>
-            
-        </main>
-
-        <div>
+            </div>
+            <slot name="favorites">
+            <h4 class="no-favorites">De momento no hay favoritos</h4>
+            </slot>
+            <div class="change-page">
             <button id="previuos" ><</button>
             <button id="next">></button>
-        </div>
+            </div>
+        </main>        
         `;
     }
 }

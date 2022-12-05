@@ -38,7 +38,7 @@ export class PokemonItem extends Component {
                         this.item.name[0].toUpperCase() +
                         this.item.name.substring(1)
                     }</h4>
-                    <button class="addFavorites">Añadir a favoritos</button>
+                    <button class="addFavorites"></button>
                 </li>
         `;
     }
