@@ -27,6 +27,17 @@ export abstract class Component {
         return this.element;
     }
 
+    protected removeHtml(selector: string) {
+        try {
+            this.element = this.selectElement(selector);
+            this.element.remove();
+        } catch (error) {
+            this.element = null;
+        }
+
+        return this.element;
+    }
+
     private selectElement(selector: string): Element {
         const error = new Error('Invalid selector');
         if (!selector) throw error;

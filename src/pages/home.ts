@@ -5,6 +5,9 @@ import { PageCardResponseType } from '../models/pageCardsResponse.js';
 export class HomePage extends Component {
     url = 'https://pokeapi.co/api/v2/pokemon';
     response!: PageCardResponseType;
+    visualizedPokemon = 20;
+    pageNumber = 1;
+    maxPageNum = 0;
 
     constructor(private selector: string) {
         super();
@@ -27,11 +30,18 @@ export class HomePage extends Component {
         const element = super.innRender(this.selector);
         element.querySelector('#previous')?.addEventListener('click', () => {
             if (!this.response.previous) return;
-            this.cleanHtml(this.selector);
+            this.pageNumber -= 1;
+            this.removeHtml('main');
             this.init(this.response.previous);
         });
         element.querySelector('#next')?.addEventListener('click', () => {
-            this.cleanHtml(this.selector);
+            this.removeHtml('main');
+            if (this.pageNumber > this.maxPageNum) {
+                this.maxPageNum = this.pageNumber;
+                this.visualizedPokemon += 20;
+            }
+
+            this.pageNumber += 1;
             this.init(this.response.next);
         });
         return element;
@@ -42,7 +52,7 @@ export class HomePage extends Component {
         <main>
             <div class="home-header">
             <h2>Pokemon List</h2>
-            <h3>Vistos 20 / ${this.response.count}</h3>
+            <h3>Vistos ${this.visualizedPokemon} / ${this.response.count}</h3>
             </div>
             <slot name="home"></slot>
             <div class="change-page">
