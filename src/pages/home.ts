@@ -32,13 +32,15 @@ export class HomePage extends Component {
     private createTemplate() {
         return `
         <main>
+            <div class="home-header">
             <h2>Pokemon List</h2>
             <h3>Vistos 20/10000</h3>
+            </div>
             <slot name="home"></slot>
-            <div>
+            <div class="change-page">
             <button id="previuos" ><</button>
             <button id="next">></button>
-        </div>
+            </div>
         </main>
         `;
     }

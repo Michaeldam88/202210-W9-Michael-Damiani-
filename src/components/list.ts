@@ -32,7 +32,7 @@ export class List extends Component {
 
     async init() {
         const responses = await Promise.all(
-            this.cards.map((e) => fetch(e.url)),
+            this.cards.map((e) => fetch(e.url))
         );
         this.itemlist = await Promise.all(responses.map((e) => e.json()));
         this.manageComponent();
