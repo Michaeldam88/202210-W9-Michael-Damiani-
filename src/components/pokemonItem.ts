@@ -7,7 +7,8 @@ export class PokemonItem extends Component {
     constructor(
         private selector: string,
         private item: PokemonDetailType,
-        private addToFavorite: (id: number, isFavorited: boolean) => void
+        private addToFavorite: (id: number, isFavorited: boolean) => void,
+        private showDetails: (item: PokemonDetailType) => void
     ) {
         super();
         this.template = this.createTemplate();
@@ -18,17 +19,26 @@ export class PokemonItem extends Component {
         const element = super.innRender(this.selector);
         element
             .querySelector('.addFavorites')
-            ?.addEventListener('click', this.handleButton.bind(this));
+            ?.addEventListener('click', this.handleFavorite.bind(this));
+
+        element
+            .querySelector('img')
+            ?.addEventListener('click', this.handleDetail.bind(this));
+
         return element;
     }
 
-    handleButton() {
+    handleFavorite() {
         this.addToFavorite(this.item.id, this.isFavorited);
+    }
+
+    handleDetail() {
+        this.showDetails(this.item);
     }
 
     private createTemplate() {
         return `
-                <li class="item-card" id="${this.item.id}">
+                <li class="item-card" id="id_${this.item.id}">
                     <img src="${
                         this.item.sprites.other['official-artwork']
                             .front_default

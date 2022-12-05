@@ -1,6 +1,7 @@
 # Week 9 - Challenge WeekEnd
 
 Sonar: https://sonarcloud.io/project/overview?id=Michaeldam88_202210-W9-Michael-Damiani-
+Netlify: https://pokedexrender.netlify.app/index.html
 
 ## Pokémon
 
