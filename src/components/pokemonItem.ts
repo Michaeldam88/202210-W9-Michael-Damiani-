@@ -1,11 +1,13 @@
-import { PokemonCard } from '../models/pokemonCard.js';
+import { PokemonDetailType } from '../models/pokemonDetail.js';
 import { Component } from './component.js';
 
 export class PokemonItem extends Component {
+    isFavorited = false;
+
     constructor(
         private selector: string,
-        private item: PokemonCard,
-        private addToFavorite: (id: string, isFavorited: boolean) => void
+        private item: PokemonDetailType,
+        private addToFavorite: (id: number, isFavorited: boolean) => void
     ) {
         super();
         this.template = this.createTemplate();
@@ -21,13 +23,16 @@ export class PokemonItem extends Component {
     }
 
     handleButton() {
-        this.addToFavorite(this.item.id, this.item.isFavorited);
+        this.addToFavorite(this.item.id, this.isFavorited);
     }
 
     private createTemplate() {
         return `
                 <li class="item-card" id="${this.item.id}">
-                    <img src="${this.item.imgUrl}" alt="${this.item.name}">
+                    <img src="${
+                        this.item.sprites.other['official-artwork']
+                            .front_default
+                    }" alt="${this.item.name}">
                     <p>nº ${this.item.id}</p>
                     <h4>${
                         this.item.name[0].toUpperCase() +

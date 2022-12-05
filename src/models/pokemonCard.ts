@@ -1,13 +1,6 @@
-type CardType = {
-    id: string;
+export interface CardType {
+    id: number;
     name: string;
     imgUrl: string;
     isFavorited: boolean;
-};
-
-export class PokemonCard implements CardType {
-    isFavorited: boolean;
-    constructor(public id: string, public name: string, public imgUrl: string) {
-        this.isFavorited = false;
-    }
 }
