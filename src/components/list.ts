@@ -1,5 +1,6 @@
 import { PokemonDetailType } from '../models/pokemonDetail.js';
 import { Component } from './component.js';
+import { PokemonDetailMod } from './pokemonDetailMod.js';
 import { PokemonItem } from './pokemonItem.js';
 
 export class List extends Component {
@@ -22,7 +23,8 @@ export class List extends Component {
                 new PokemonItem(
                     'ul.slot-items',
                     item,
-                    this.addToFavorite.bind(this)
+                    this.addToFavorite.bind(this),
+                    this.showDetails.bind(this)
                 );
             });
         } catch (error) {
@@ -43,8 +45,13 @@ export class List extends Component {
         return super.innRender(this.selector);
     }
 
-    addToFavorite() {
-        console.log('added to favorites');
+    addToFavorite(id: number, isFavorited: boolean) {
+        console.log(id, isFavorited);
+    }
+
+    showDetails(item: PokemonDetailType) {
+        new PokemonDetailMod(item);
+        
     }
 
     private createTemplate() {

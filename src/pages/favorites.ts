@@ -16,13 +16,13 @@ export class Favorites extends Component {
         <main>
             <div class="home-header">
             <h2>Pokemon Favoritos</h2>
-            <h3>Guardados 10</h3>
+            <h3>Guardados 0</h3>
             </div>
             <slot name="favorites">
             <h4 class="no-favorites">De momento no hay favoritos</h4>
             </slot>
             <div class="change-page">
-            <button id="previuos" ><</button>
+            <button id="previous" ><</button>
             <button id="next">></button>
             </div>
         </main>        
