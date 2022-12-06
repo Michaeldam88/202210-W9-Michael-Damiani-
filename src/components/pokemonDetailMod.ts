@@ -10,6 +10,9 @@ export class PokemonDetailMod extends Component {
 
     render() {
         const element = super.innRender('html');
+        element.addEventListener('click', () =>
+            this.removeHtml('.modal-container')
+        );
 
         return element;
     }
