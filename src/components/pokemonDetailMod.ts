@@ -9,14 +9,15 @@ export class PokemonDetailMod extends Component {
     }
 
     render() {
-        const element = super.innRender('.root');
+        const element = super.innRender('html');
 
         return element;
     }
 
     private createTemplate() {
         return `
-                <li class="item-card" id="id_${this.item.id}">
+                <div class="modal-container">
+                    <div class="modal">
                     <div>
                     <img src="${
                         this.item.sprites.other['official-artwork']
@@ -27,21 +28,21 @@ export class PokemonDetailMod extends Component {
                         this.item.name[0].toUpperCase() +
                         this.item.name.substring(1)
                     }</h4>
+                    <button class="addFavorites"></button>
                     </div>
-                    <div>
+                    <div class="modal-details">
                         <ul>
                             <li>Height: ${(this.item.height * 0.1).toFixed(
                                 1
                             )} m</li>
                             <li>Weight: ${this.item.weight} Kg</li>
                             <li>Type: ${this.item.types[0].type.name}</li>
-                            <li> </li>
-                            <li> </li>
-                            <li> </li>
+                            <li>ETC... </li>
                         </ul>
                     </div>
-                    <button class="addFavorites"></button>
-                </li>
+                    
+                    </div>
+                </div>
         `;
     }
 }
