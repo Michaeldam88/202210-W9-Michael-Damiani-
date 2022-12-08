@@ -4,7 +4,7 @@ import { PokemonDetailMod } from './pokemonDetailMod.js';
 import { PokemonItemFavorited } from './pokemonItemFavorited.js';
 
 export class ListFavorited extends Component {
-    url = 'http://localhost:3000/api/pokemon';
+    url = 'http://localhost:3000/api/pokemon/';
     constructor(
         private selector: string,
         private itemlist: Array<PokemonDetailType>
@@ -37,6 +37,7 @@ export class ListFavorited extends Component {
     }
 
     removeFavorite(item: PokemonDetailType) {
+        console.log(item.id);
         return fetch(this.url + item.id, {
             method: 'DELETE',
         }).then((resp) => {

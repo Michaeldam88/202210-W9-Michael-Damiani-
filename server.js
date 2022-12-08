@@ -1,5 +1,6 @@
 import jsonServer from 'json-server';
 
+
 const server = jsonServer.create();
 const router = jsonServer.router('.server/db.json');
 const middlewares = jsonServer.defaults();
@@ -33,6 +34,11 @@ server.patch('/api/pokemon/:id', (req, res) => {
 });
 
 server.delete('/api/pokemon/:id', (req, res) => {
+    const id = +req.params.id;
+    const savedInfo = router.db.get('pokemons').value();
+    const filteredResult = savedInfo.filter((element) => element.id !== id);
+    router.db.set('pokemons', filteredResult).write();
+    //new ListFavorited('[name=favorites]', savedInfo);
     res.jsonp(req.params.id);
 });
 

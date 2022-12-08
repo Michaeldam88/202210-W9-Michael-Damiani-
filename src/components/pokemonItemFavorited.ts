@@ -18,7 +18,7 @@ export class PokemonItemFavorited extends Component {
     render() {
         const element = super.innRender(this.selector);
         element
-            .querySelector('.addFavorites')
+            .querySelector('.removeFavorites')
             ?.addEventListener('click', this.handleFavorite.bind(this));
 
         element
