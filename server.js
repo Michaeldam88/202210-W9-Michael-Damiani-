@@ -3,6 +3,9 @@ import jsonServer from 'json-server';
 const server = jsonServer.create();
 const router = jsonServer.router('.server/db.json');
 const middlewares = jsonServer.defaults();
+
+// To handle POST, PUT and PATCH you need to use a body-parser
+// You can use the one used by JSON Server
 server.use(jsonServer.bodyParser);
 
 // Set default middlewares (logger, static, cors and no-cache)
@@ -17,12 +20,11 @@ server.post('/api/pokemon', (req, res) => {
     const { id } = req.body;
     if (!id) return res.sendStatus(500);
     const savedInfo = router.db.get('pokemons').value() || [];
-    const exist = savedInfo.some((e)=> e.id === req.body.id)
-    console.log(exist)
+    const exist = savedInfo.some((e) => e.id === req.body.id);
     if (!exist) {
-        savedInfo.push(req.body)
-        router.db.set('pokemons', savedInfo).write();    
-    } 
+        savedInfo.push(req.body);
+        router.db.set('pokemons', savedInfo).write();
+    }
     res.jsonp(req.body);
 });
 
@@ -33,9 +35,6 @@ server.patch('/api/pokemon/:id', (req, res) => {
 server.delete('/api/pokemon/:id', (req, res) => {
     res.jsonp(req.params.id);
 });
-
-// To handle POST, PUT and PATCH you need to use a body-parser
-// You can use the one used by JSON Server
 
 // Use default router
 server.use(router);

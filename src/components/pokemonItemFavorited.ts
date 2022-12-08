@@ -1,13 +1,13 @@
 import { PokemonDetailType } from '../models/pokemonDetail.js';
 import { Component } from './component.js';
 
-export class PokemonItem extends Component {
+export class PokemonItemFavorited extends Component {
     isFavorited = false;
 
     constructor(
         private selector: string,
         private item: PokemonDetailType,
-        private addToFavorite: (item: PokemonDetailType) => void,
+        private removeFavorite: (item: PokemonDetailType) => void,
         private showDetails: (item: PokemonDetailType) => void
     ) {
         super();
@@ -29,7 +29,7 @@ export class PokemonItem extends Component {
     }
 
     handleFavorite() {
-        this.addToFavorite(this.item);
+        this.removeFavorite(this.item);
     }
 
     handleDetail() {
@@ -48,7 +48,7 @@ export class PokemonItem extends Component {
                         this.item.name[0].toUpperCase() +
                         this.item.name.substring(1)
                     }</h4>
-                    <button class="addFavorites"></button>
+                    <button class="removeFavorites"></button>
                 </li>
         `;
     }

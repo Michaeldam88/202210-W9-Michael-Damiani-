@@ -107,6 +107,10 @@ main {
     background-image: url(../assets/pokeball-favorited.png);
 }
 
+.favorites {
+    background-image: url(../assets/pokeball-favorited.png);
+}
+
 .home-header {
     display: flex;
     justify-content: center;
@@ -187,4 +191,25 @@ main {
     margin-top: 2rem;
     height: 5rem;
     width: 5rem;
+}
+
+.removeFavorites {
+    display: block;
+    margin: 0.8rem auto 0.3rem auto;
+    background-color: transparent;
+    background-image: url(../assets/bin.png);
+    background-position: center;
+    background-size: cover;
+    height: 2rem;
+    width: 2rem;
+    border: none;
+}
+
+.removeFavorites:hover {
+    cursor: pointer;
+}
+
+.removeFavorites:active {
+    background-color: #f0bb87;
+    border-radius: 0.5rem;
 }

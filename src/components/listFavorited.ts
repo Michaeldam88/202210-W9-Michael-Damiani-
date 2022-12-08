@@ -1,17 +1,16 @@
 import { PokemonDetailType } from '../models/pokemonDetail.js';
 import { Component } from './component.js';
 import { PokemonDetailMod } from './pokemonDetailMod.js';
-import { PokemonItem } from './pokemonItem.js';
+import { PokemonItemFavorited } from './pokemonItemFavorited.js';
 
-export class List extends Component {
-    itemlist!: Array<PokemonDetailType>;
-
+export class ListFavorited extends Component {
+    url = 'http://localhost:3000/api/pokemon';
     constructor(
         private selector: string,
-        private cards: Array<{ name: string; url: string }>
+        private itemlist: Array<PokemonDetailType>
     ) {
         super();
-        this.init();
+        this.manageComponent();
     }
 
     manageComponent() {
@@ -20,10 +19,10 @@ export class List extends Component {
 
         try {
             this.itemlist.forEach((item) => {
-                new PokemonItem(
+                new PokemonItemFavorited(
                     'ul.slot-items',
                     item,
-                    this.addToFavorite.bind(this),
+                    this.removeFavorite.bind(this),
                     this.showDetails.bind(this)
                 );
             });
@@ -32,32 +31,18 @@ export class List extends Component {
         }
     }
 
-    async init() {
-        const responses = await Promise.all(
-            this.cards.map((e) => fetch(e.url))
-        );
-        this.itemlist = await Promise.all(responses.map((e) => e.json()));
-        this.manageComponent();
-    }
-
     render() {
         super.cleanHtml(this.selector);
         return super.innRender(this.selector);
     }
 
-    addToFavorite(item: PokemonDetailType) {
-        return fetch('http://localhost:3000/api/pokemon', {
-            method: 'POST',
-            body: JSON.stringify(item),
-            headers: {
-                'Content-type': 'application/json',
-            },
+    removeFavorite(item: PokemonDetailType) {
+        return fetch(this.url + item.id, {
+            method: 'DELETE',
         }).then((resp) => {
             if (!resp.ok)
                 throw new Error(`Error ${resp.status}: ${resp.statusText}`);
-            const pokeball = document.querySelector(`#id_${item.id} button`);
-            pokeball?.classList.add('favorites');
-            return resp.json();
+            return item.id;
         });
     }
 
